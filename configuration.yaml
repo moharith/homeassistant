@@ -12,7 +12,7 @@ input_boolean:
     
 ffmpeg:    
 
-camera:
+camera: 
   - platform: ring
 
 ###################################################
