@@ -50,7 +50,7 @@ tts:
 ##       RING DEURBEL
 
 ring:
-  username: jmdegeus@hotmail.com
+  username: !secret email
   password: !secret ring 
   scan_interval: 2
 
@@ -61,7 +61,7 @@ binary_sensor:
 ##       SONOF INSTELLEN
 
 sonoff:
-  username: jmdegeus@hotmail.com
+  username: !secret email 
   password: !secret sonof 
   scan_interval: 60
   grace_period: 600
