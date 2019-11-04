@@ -1,0 +1,49 @@
+- platform: group
+  name: alle lampen
+  entities:
+    #woonkamer
+    - light.bloom
+    - light.bank
+    - light.go
+    - light.eettafel
+    - light.glitter
+    - light.keuken
+    #gangen
+    - light.gang_boven
+    - light.gang_beneden
+    #stroom
+    - light.jordi_stroom
+    - light.iris_stroom
+    #wc
+    - light.lamp_wc
+    #noell
+    - light.noell
+    #remi
+    - light.remi
+    #slaapkamer
+    - light.slaapkamer
+    - light.slaapkamer_1
+    - light.slaapkamer_2_2
+    #studeerkamer
+    - light.studeerkamer_2
+    #badkamer
+    - light.badkamer_1
+    - light.badkamer_2
+    - light.badkamer_3
+      
+- platform: group
+  name: Woonkamergroep
+  entities:
+    - light.bloom
+    - light.bank
+    - light.go
+    - light.eettafel
+    - light.glitter
+    - light.keuken
+    
+- platform: group
+  name: Slaapkamergroep
+  entities:
+    - light.slaapkamer
+    - light.slaapkamer_1
+    - light.slaapkamer_2_2

@@ -1,0 +1,492 @@
+resources:
+  - url: /community_plugin/banner-card/banner-card.js
+    type: module
+  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+    type: module
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+  - url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+    type: module  
+  - url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
+    type: js    
+
+title: My Awesome Home
+views:
+    # View tab title.
+  - title: Algemeen
+    cards:
+###################################################
+#                                                 #
+#                 WOONKAMER                       #
+#                                                 #
+###################################################
+      - type: picture-elements
+        image: /local/woonkamer.jpg
+        elements:
+          - type: state-icon
+            icon: mdi:lightbulb-on-outline
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.woonkamergroep         
+            style:
+              top: 85%
+              left: 5%
+              color: white
+          - type: state-icon
+            icon: mdi:spotlight
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: switch.sonoff_10009d2097       
+            style:
+              top: 85%
+              left: 15%
+              color: white      
+          - type: state-icon 
+            entity: binary_sensor.studeerkamer_motion
+            style:
+              top: 85%
+              left: 70%
+              color: white               
+          - type: state-icon 
+            icon: mdi:home-thermometer
+            entity: sensor.studeerkamer_temperature  
+            style:
+              top: 85%
+              left: 80%
+              color: white              
+          - type: state-label
+            entity: sensor.studeerkamer_temperature
+            style:
+              top: 85%
+              left: 90%
+              color: white  
+      - entity: media_player.woonkamer
+        type: custom:mini-media-player
+        artwork: cover
+        source: icon               
+###################################################
+#                                                 #
+#                STUDEERKAMER                     #
+#                                                 #
+###################################################
+      - type: picture-elements
+        image: /local/studeerkamer.jpg
+        elements:
+          - type: state-icon
+            icon: mdi:lightbulb-on-outline
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.ikea_studeer       
+            style:
+              top: 85%
+              left: 5%
+              color: white
+            style:
+              top: 85%
+              left: 15%
+              color: white      
+          - type: state-icon 
+            entity: binary_sensor.tradfri_motion_sensor
+            style:
+              top: 85%
+              left: 70%
+              color: white               
+          - type: state-icon 
+            icon: mdi:home-thermometer
+            entity: sensor.studeerkamer_temperature  
+            style:
+              top: 85%
+              left: 80%
+              color: white              
+          - type: state-label
+            entity: sensor.studeerkamer_temperature
+            style:
+              top: 85%
+              left: 90%
+              color: white                
+###################################################
+#                                                 #
+#                GANG BENEDEN                     #
+#                                                 #
+###################################################
+      - type: picture-elements
+        image: /local/gangb.jpg
+        elements:
+          - type: state-icon
+            icon: mdi:lightbulb-on-outline
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.gang_beneden      
+            style:
+              top: 85%
+              left: 5%
+              color: white      
+          - type: state-icon 
+            entity: binary_sensor.gang_motion_sensor
+            style:
+              top: 85%
+              left: 15%
+              color: white               
+          - type: state-icon 
+            icon: mdi:home-thermometer
+            entity: sensor.gang_sensor_temperature
+            style:
+              top: 85%
+              left: 25%
+              color: white              
+          - type: state-label
+            entity: sensor.gang_sensor_temperature
+            style:
+              top: 85%
+              left: 35%
+              color: white    
+#wc              
+          - type: state-icon
+            icon: mdi:lightbulb-on-outline
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.lamp_wc     
+            style:
+              top: 85%
+              left: 60%
+              color: white      
+          - type: state-icon 
+            entity: binary_sensor.wc_beneden_motion_sensor
+            style:
+              top: 85%
+              left: 70%
+              color: white               
+          - type: state-icon 
+            icon: mdi:home-thermometer
+            entity: sensor.wc_beneden_sensor_temperature
+            style:
+              top: 85%
+              left: 80%
+              color: white              
+          - type: state-label
+            entity: sensor.wc_beneden_sensor_temperature
+            style:
+              top: 85%
+              left: 90%
+              color: white               
+###################################################
+#                                                 #
+#                SLAAPKAMER                       #
+#                                                 #
+###################################################
+      - type: picture-elements
+        image: /local/slaapk.jpg
+        elements:
+          - type: state-icon
+            icon: mdi:lightbulb-on-outline
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.slaapkamer  
+            style:
+              top: 85%
+              left: 15%
+              color: white  
+          - type: state-icon
+            icon: mdi:ceiling-light
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.slaapkamer_1 
+            style:
+              top: 85%
+              left: 25%
+              color: white   
+          - type: state-icon
+            icon: mdi:floor-lamp
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.slaapkamer_2 
+            style:
+              top: 85%
+              left: 35%
+              color: white  
+          - type: state-icon
+            icon: mdi:floor-lamp
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.slaapkamer_2_2 
+            style:
+              top: 85%
+              left: 45%
+              color: white     
+          - type: state-icon
+            icon: mdi:power-socket-eu
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.slaapkamer_stroom
+            style:
+              top: 85%
+              left: 95%
+              color: white                
+###################################################
+#                                                 #
+#                SLAAPKAMER                       #
+#                                                 #
+###################################################
+      - type: picture-elements
+        image: /local/douche.jpg
+        elements:
+          - type: state-icon
+            icon: mdi:lightbulb-on-outline
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.gang_boven    
+            style:
+              top: 85%
+              left: 5%
+              color: white      
+          - type: state-icon 
+            entity: binary_sensor.motion_boven
+            style:
+              top: 85%
+              left: 15%
+              color: white               
+          - type: state-icon 
+            icon: mdi:home-thermometer
+            entity: sensor.boven_temperature
+            style:
+              top: 85%
+              left: 25%
+              color: white              
+          - type: state-label
+            entity: sensor.boven_temperature
+            style:
+              top: 85%
+              left: 35%
+              color: white    
+#wc              
+          - type: state-icon
+            icon: mdi:lightbulb-on-outline
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            entity: light.badkamer    
+            style:
+              top: 85%
+              left: 60%
+              color: white      
+          - type: state-icon 
+            entity: binary_sensor.badkamer_sensor_motion
+            style:
+              top: 85%
+              left: 70%
+              color: white               
+          - type: state-icon 
+            icon: mdi:home-thermometer
+            entity: sensor.badkamer_sensor_temperature
+            style:
+              top: 85%
+              left: 80%
+              color: white              
+          - type: state-label
+            entity: sensor.badkamer_sensor_temperature
+            style:
+              top: 85%
+              left: 90%
+              color: white  
+      - type: entities
+        entities:
+        - light.garage_stroom
+        - input_boolean.slaapstart
+
+              
+  - title: Afval
+    cards:
+      - type: picture-elements
+        image: /local/AFVAL.png
+        elements:
+          - type: state-label
+            entity: sensor.trash_firstdate
+            prefix: "Wordt opgehaald op: "
+            style:
+              top: 12%
+              left: 40%
+              color: green                 
+          - type: state-label
+            entity: sensor.trash_firstwastetype 
+            style:
+              top: 10%
+              left: 68%
+              color: blue 
+          - type: state-label
+            entity: sensor.trash_gft
+            style:
+              top: 22%
+              left: 60%
+              color: grey
+              font-size: 30px
+          - type: state-label
+            entity: sensor.trash_papier
+            style:
+              top: 40%
+              left: 60%
+              color: grey
+              font-size: 30px              
+          - type: state-label
+            entity: sensor.trash_restafval
+            style:
+              top: 58%
+              left: 60%
+              color: grey
+              font-size: 30px   
+          - type: state-label
+            entity: sensor.trash_pmd
+            style:
+              top: 74%
+              left: 60%
+              color: grey
+              font-size: 30px    
+          - type: state-label
+            entity: sensor.trash_grof_tuinafval
+            style:
+              top: 91%
+              left: 60%
+              color: grey
+              font-size: 30px       
+### VACUUM
+
+
+  - title: Vacuum
+    cards:
+      - type: custom:xiaomi-vacuum-card
+        entity: vacuum.frits
+        image: /local/vacuum.png
+        name: Frits
+        buttons: true
+        labels:
+          status: Status
+          battery: Batterij
+          mode: Mode
+          main_brush: Hoofdborstel
+          side_brush: Zijborstel
+          filter: Filter
+          sensor: Sensoren    
+      - type: custom:xiaomi-vacuum-map-card
+        entity: vacuum.frits
+        map_image: '/local/map.png'
+        calibration_points:
+          - vacuum:
+              x: 28500
+              y: 25350
+            map:
+              x: 277
+              y: 221
+          - vacuum:
+              x: 25300
+              y: 21650
+            map:
+              x: 111
+              y: 411
+          - vacuum:
+              x: 33200
+              y: 20800
+            map:
+              x: 518
+              y: 454
+        zones:
+          - [[23280,23666,27980,26516,1],[25395,21121,32595,25871,1],[32450,20049,33350,22849,1],[30853,25824,33653,29274,1]]
+          
+###################################################
+#                                                 #
+#                Ring BEL                         #
+#                                                 #
+###################################################
+  - title: Ring
+    cards:
+      - type: picture-glance
+        title: Voordeur
+        entities:
+          - binary_sensor.ring_voordeur_ding
+          - binary_sensor.ring_voordeur_motion
+          - entity: sensor.ring_voordeur_battery
+            show_state: true            
+          - entity: sensor.ring_voordeur_last_activity
+            show_state: true
+          - entity: sensor.ring_voordeur_last_ding
+            show_state: true          
+            icon: mdi:bell
+        camera_image: camera.voordeur  
+        camera_view: live
+
+              
+        # entities:
+          # - entity: sensor.trash_next
+            # name: volgend afvalmoment
+          # - entity: sensor.trash_pmd
+            # name: Plastic
+          # - entity: sensor.trash_restafval
+            # name: restafval
+          # - entity: sensor.trash_gft
+            # name: groente, fruit en tuinafval
+          # - entity: sensor.trash_grof_tuinafval
+            # name: grof tuinafval
+      # - type: picture-elements
+        # image: /local/ophaal.jpg
+        # elements:
+          # - type: state-label
+            # entity: sensor.trash_firstwastetype     
+            # style:
+              # top: 90%
+              # right: 0%
+              # color: white
+              # font-size: 150%
+          # - type: state-label
+            # entity: sensor.trash_next    
+            # style:
+              # top: 90%
+              # right: 0%
+              # color: white
+              # font-size: 150%
+         # # - entity: sensor.trash_firstdate sensor.trash_next   
+         # # - entity: sensor.trash_firstwastetype
+      # - type: custom:banner-card
+        # background: "#deb866"
+        # heading: "\U0000267A Plastic afval"
+        # link: /lovelace/living_room
+        # row_size: 1
+        # entities:
+          # - entity: sensor.trash_pmd
+            # name: moet ingeleverd worden op
+      # - type: custom:banner-card
+        # background: "#877c6f"
+        # heading: "\U0001F5D1 Restafval"
+        # link: /lovelace/living_room
+        # row_size: 1
+        # entities:
+          # - entity: sensor.trash_restafval
+            # name: moet ingeleverd worden op            
+      # - type: custom:banner-card
+        # background: "#639651"
+        # heading: "\U0001F351 GFT afval"
+        # link: /lovelace/living_room
+        # row_size: 1
+        # entities:
+          # - entity: sensor.trash_gft
+            # name: moet ingeleverd worden op                

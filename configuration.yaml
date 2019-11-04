@@ -1,0 +1,108 @@
+## 
+# PURGE
+# BACKUP
+# SECRETS
+# HOME ASSIST
+
+input_boolean:
+  slaapstart:
+    name: Slaap aanzetten
+    initial: off
+    icon: mdi:bed
+    
+ffmpeg:    
+
+camera:
+  - platform: ring
+
+###################################################
+#                                                 #
+#                 DEFAULT CONFIG                  #
+#                                                 #
+###################################################
+default_config:
+
+lovelace:
+  mode: yaml
+
+###################################################
+#                                                 #
+#                 BREAK UP CONFIG                 #
+#                                                 #
+###################################################
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+light: !include light.yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+
+###################################################
+#                                                 #
+#                   PRODUCTS                      #
+#                                                 #
+###################################################
+
+##       RING DEURBEL
+
+ring:
+  username: jmdegeus@hotmail.com
+  password: !secret ring 
+  scan_interval: 2
+
+binary_sensor:
+  - platform: ring
+  - platform: huesensor
+  
+##       SONOF INSTELLEN
+
+sonoff:
+  username: jmdegeus@hotmail.com
+  password: !secret sonof 
+  scan_interval: 60
+  grace_period: 600
+  api_region: 'eu'
+  entity_prefix: True
+  debug: False
+
+## HUE KOPPELEN
+
+hue:
+  bridges:
+    - host: 192.168.178.13
+  
+sensor:
+
+## AFVALWIJZER PLATFORM
+
+- platform: afvalwijzer
+  postcode: !secret postcode
+  huisnummer: !secret huisnummer
+  
+- platform: template
+  sensors:
+    trash_restafval_date:
+      friendly_name: 'Grijze bak'
+      value_template: '{{ as_timestamp(states.sensor.trash_restafval.state) | timestamp_custom("%Y-%m-%d") }}'
+
+- platform: huesensor
+
+- platform: ring
+  
+device_tracker:
+  - platform: huesensor
+  
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.178.60
+    token: !secret token
+    name: frits
+
+
+
+
+      
