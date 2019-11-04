@@ -4,6 +4,12 @@
 # SECRETS
 # HOME ASSIST
 
+remote:
+  - platform: harmony
+    name: Woonkamer
+    host: 10.168.1.24
+
+
 input_boolean:
   slaapstart:
     name: Slaap aanzetten
@@ -88,6 +94,13 @@ sensor:
     trash_restafval_date:
       friendly_name: 'Grijze bak'
       value_template: '{{ as_timestamp(states.sensor.trash_restafval.state) | timestamp_custom("%Y-%m-%d") }}'
+    
+- platform: template
+  sensors:
+    woonkamer:
+      friendly_name: 'woonkamer'     
+      value_template: "{{ state_attr('remote.woonkamer', 'current_activity') }}"
+ 
 
 - platform: huesensor
 
