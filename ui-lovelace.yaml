@@ -15,11 +15,56 @@ views:
     # View tab title.
   - title: Algemeen
     cards:
+      - type: picture-elements
+        image: /local/jordiiris.png
+        elements: 
+          - type: state-label
+            entity: device_tracker.life360_iris_braun
+            style:
+              top: 92%
+              left: 10%
+              color: white            
+          - type: state-label
+            entity: device_tracker.life360_jordi_de_geus
+            style:
+              top: 92%
+              left: 60%
+              color: white                   
+
+      - type: weather-forecast
+        entity: weather.huis
+
+
+###################################################
+#                                                 #
+#                Ring BEL                         #
+#                                                 #
+###################################################
+
+      - type: picture-glance
+        title: Voordeur
+        entities:
+          - binary_sensor.ring_voordeur_ding
+          - binary_sensor.ring_voordeur_motion
+          - entity: sensor.ring_voordeur_battery
+            show_state: true            
+          - entity: sensor.ring_voordeur_last_activity
+            show_state: true
+          - entity: sensor.ring_voordeur_last_ding
+            show_state: true          
+            icon: mdi:bell
+        camera_image: camera.voordeur  
+        camera_view: live
+        
+  - title: Kamers
+    cards:
 ###################################################
 #                                                 #
 #                 WOONKAMER                       #
 #                                                 #
 ###################################################
+
+        
       - type: picture-elements
         image: /local/woonkamer.jpg
         elements:
@@ -373,7 +418,7 @@ views:
 ### VACUUM
 
 
-  - title: Vacuum
+  - title: Stofzuiger
     cards:
       - type: custom:xiaomi-vacuum-card
         entity: vacuum.frits
@@ -413,27 +458,7 @@ views:
         zones:
           - [[23280,23666,27980,26516,1],[25395,21121,32595,25871,1],[32450,20049,33350,22849,1],[30853,25824,33653,29274,1]]
           
-###################################################
-#                                                 #
-#                Ring BEL                         #
-#                                                 #
-###################################################
-  - title: Ring
-    cards:
-      - type: picture-glance
-        title: Voordeur
-        entities:
-          - binary_sensor.ring_voordeur_ding
-          - binary_sensor.ring_voordeur_motion
-          - entity: sensor.ring_voordeur_battery
-            show_state: true            
-          - entity: sensor.ring_voordeur_last_activity
-            show_state: true
-          - entity: sensor.ring_voordeur_last_ding
-            show_state: true          
-            icon: mdi:bell
-        camera_image: camera.voordeur  
-        camera_view: live
+
 
               
         # entities:
