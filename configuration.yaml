@@ -17,12 +17,15 @@ recorder:
       - climate
       - sensor
       - person
+      
+############
+# NOTIFY   #
+############
 
-remote:
-  - platform: harmony
-    name: tvwoonkamer
-    host: 192.168.178.24
-    
+notify:
+  - name: NOTIFIER_NAME
+    platform: telegram
+    chat_id: !secret chatid    
 
 telegram_bot:
   - platform: polling
@@ -30,33 +33,15 @@ telegram_bot:
     allowed_chat_ids:
       - !secret chatid
 
-notify:
-  - name: NOTIFIER_NAME
-    platform: telegram
-    chat_id: !secret chatid    
-
 input_boolean:
   slaapstart:
     name: Slaap aanzetten
     initial: off
     icon: mdi:bed
-  check1:
-    name: check1
-    initial: off   
-  check2:
-    name: check2
-    initial: off  
-  check3:
-    name: check3
-    initial: off  
   check4:
     name: check4
-    initial: off     
-ffmpeg:    
-
-camera: 
-  - platform: ring
-
+    initial: off    
+    
 ###################################################
 #                                                 #
 #                 DEFAULT CONFIG                  #
@@ -100,6 +85,11 @@ ring:
 binary_sensor:
   - platform: ring
   - platform: huesensor
+
+ffmpeg:    
+
+camera: 
+  - platform: ring  
   
 ##       SONOF INSTELLEN
 
@@ -112,16 +102,18 @@ sonoff:
   entity_prefix: True
   debug: False
 
-## HUE KOPPELEN
+## HARMONY
 
-hue:
-  bridges:
-    - host: 192.168.178.13
-  
+
+remote:
+  - platform: harmony
+    name: tvwoonkamer
+    host: 192.168.178.24
+
+
+##  SENSORS
+
 sensor:
-
-## AFVALWIJZER PLATFORM
-
 
 - platform: systemmonitor
   resources:
@@ -147,12 +139,7 @@ sensor:
       value_template: "{{ state_attr('climate.thermostaat_studeerkamer', 'temperature') }}"  
       unit_of_measurement: 'degrees'      
 
-- platform: huesensor
-
 - platform: ring
-  
-device_tracker:
-  - platform: huesensor
   
 vacuum:
   - platform: xiaomi_miio

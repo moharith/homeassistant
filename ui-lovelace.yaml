@@ -165,11 +165,7 @@ views:
             style:
               top: 85%
               left: 5%
-              color: white
-            style:
-              top: 85%
-              left: 15%
-              color: white      
+              color: white  
           - type: state-icon 
             entity: binary_sensor.studeer_tradfri_bewegingssensor
             style:
@@ -402,6 +398,11 @@ views:
           - media_player.slaapkamer_mini
           - media_player.keuken_mini              
 
+###################################################
+#                                                 #
+#                afvalwijzer                      #
+#                                                 #
+###################################################
               
   - title: Afval
     cards:
@@ -512,58 +513,4 @@ views:
         title: Iris verjaardag
         icon_url: https://en.wikipedia.org/wiki/July_16        
 
-              
-        # entities:
-          # - entity: sensor.trash_next
-            # name: volgend afvalmoment
-          # - entity: sensor.trash_pmd
-            # name: Plastic
-          # - entity: sensor.trash_restafval
-            # name: restafval
-          # - entity: sensor.trash_gft
-            # name: groente, fruit en tuinafval
-          # - entity: sensor.trash_grof_tuinafval
-            # name: grof tuinafval
-      # - type: picture-elements
-        # image: /local/ophaal.jpg
-        # elements:
-          # - type: state-label
-            # entity: sensor.trash_firstwastetype     
-            # style:
-              # top: 90%
-              # right: 0%
-              # color: white
-              # font-size: 150%
-          # - type: state-label
-            # entity: sensor.trash_next    
-            # style:
-              # top: 90%
-              # right: 0%
-              # color: white
-              # font-size: 150%
-         # # - entity: sensor.trash_firstdate sensor.trash_next   
-         # # - entity: sensor.trash_firstwastetype
-      # - type: custom:banner-card
-        # background: "#deb866"
-        # heading: "\U0000267A Plastic afval"
-        # link: /lovelace/living_room
-        # row_size: 1
-        # entities:
-          # - entity: sensor.trash_pmd
-            # name: moet ingeleverd worden op
-      # - type: custom:banner-card
-        # background: "#877c6f"
-        # heading: "\U0001F5D1 Restafval"
-        # link: /lovelace/living_room
-        # row_size: 1
-        # entities:
-          # - entity: sensor.trash_restafval
-            # name: moet ingeleverd worden op            
-      # - type: custom:banner-card
-        # background: "#639651"
-        # heading: "\U0001F351 GFT afval"
-        # link: /lovelace/living_room
-        # row_size: 1
-        # entities:
-          # - entity: sensor.trash_gft
-            # name: moet ingeleverd worden op                
+       
