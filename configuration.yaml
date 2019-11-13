@@ -3,19 +3,55 @@
 # BACKUP
 # SECRETS
 # HOME ASSIST
+# Huis verlaten!!<<<<<<<<<<<<<<<
+
+
+############
+# RECORDER #
+############
+
+recorder:
+  purge_keep_days: 5 # Only 5 days
+  include: # only include following domains:
+    domains:
+      - climate
+      - sensor
+      - person
 
 remote:
   - platform: harmony
-    name: Woonkamer
-    host: 10.168.1.24
+    name: tvwoonkamer
+    host: 192.168.178.24
+    
 
+telegram_bot:
+  - platform: polling
+    api_key: !secret api 
+    allowed_chat_ids:
+      - !secret chatid
+
+notify:
+  - name: NOTIFIER_NAME
+    platform: telegram
+    chat_id: !secret chatid    
 
 input_boolean:
   slaapstart:
     name: Slaap aanzetten
     initial: off
     icon: mdi:bed
-    
+  check1:
+    name: check1
+    initial: off   
+  check2:
+    name: check2
+    initial: off  
+  check3:
+    name: check3
+    initial: off  
+  check4:
+    name: check4
+    initial: off     
 ffmpeg:    
 
 camera: 
@@ -55,6 +91,7 @@ tts:
 
 ##       RING DEURBEL
 
+
 ring:
   username: !secret email
   password: !secret ring 
@@ -85,22 +122,30 @@ sensor:
 
 ## AFVALWIJZER PLATFORM
 
+
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+  
 - platform: afvalwijzer
   postcode: !secret postcode
   huisnummer: !secret huisnummer
   
+
 - platform: template
   sensors:
+    woonkamer_tv:
+      friendly_name: 'woonkamer'     
+      value_template: "{{ state_attr('remote.tvwoonkamer', 'current_activity') }}"
     trash_restafval_date:
       friendly_name: 'Grijze bak'
       value_template: '{{ as_timestamp(states.sensor.trash_restafval.state) | timestamp_custom("%Y-%m-%d") }}'
-    
-- platform: template
-  sensors:
-    woonkamer:
-      friendly_name: 'woonkamer'     
-      value_template: "{{ state_attr('remote.woonkamer', 'current_activity') }}"
- 
+    studeertemp:
+      friendly_name: 'StudeerTemp'     
+      value_template: "{{ state_attr('climate.thermostaat_studeerkamer', 'temperature') }}"  
+      unit_of_measurement: 'degrees'      
 
 - platform: huesensor
 

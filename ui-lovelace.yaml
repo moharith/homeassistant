@@ -9,8 +9,13 @@ resources:
     type: module  
   - url: /community_plugin/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
     type: js    
+  - url: /community_plugin/jukebox.js
+    type: module    
+  - url: /community_plugin/birthday.js
+    type: js    
+    
 
-title: My Awesome Home
+title: Cool en brander
 views:
     # View tab title.
   - title: Algemeen
@@ -34,7 +39,6 @@ views:
       - type: weather-forecast
         entity: weather.huis
 
-
 ###################################################
 #                                                 #
 #                Ring BEL                         #
@@ -56,7 +60,15 @@ views:
         camera_image: camera.voordeur  
         camera_view: live
         
-  - title: Kamers
+      - type: map
+        aspect_ratio: 16:9
+        default_zoom: 20
+        entities:
+          - person.jordi_de_geus
+          - person.iris_braun
+          - zone.home
+        
+  - title: Woonkamer
     cards:
 ###################################################
 #                                                 #
@@ -91,35 +103,57 @@ views:
               left: 15%
               color: white      
           - type: state-icon 
-            entity: binary_sensor.studeerkamer_motion
+            entity: binary_sensor.woonkamer_sensor
             style:
               top: 85%
               left: 70%
               color: white               
           - type: state-icon 
             icon: mdi:home-thermometer
-            entity: sensor.studeerkamer_temperature  
+            entity: sensor.woonkamer_sensor
             style:
               top: 85%
               left: 80%
               color: white              
           - type: state-label
-            entity: sensor.studeerkamer_temperature
+            entity: sensor.woonkamer_sensor
             style:
               top: 85%
               left: 90%
-              color: white  
+              color: white
+              
+      - type: entities
+        entities:
+          - entity: scene.woonkamer_warm
+          - entity: scene.woonkamer_helder
+          - entity: scene.woonkamer_heel_warm
+
       - entity: media_player.woonkamer
         type: custom:mini-media-player
+        #type: media-control
         artwork: cover
-        source: icon               
+        source: icon    
+        shortcuts: buttons
+      - type: sensor
+        entity: sensor.woonkamer_tv
+        name: Activiteit Harmony        
+
+
+  - title: Themostaat
+    cards:
+      - type: thermostat
+        entity: climate.spzb0001     
 ###################################################
 #                                                 #
 #                STUDEERKAMER                     #
 #                                                 #
 ###################################################
+
+  - title: Overige kamers
+    cards:
       - type: picture-elements
         image: /local/studeerkamer.jpg
+        name: Studeerkamer
         elements:
           - type: state-icon
             icon: mdi:lightbulb-on-outline
@@ -127,7 +161,7 @@ views:
               action: toggle
             hold_action:
               action: more-info
-            entity: light.ikea_studeer       
+            entity: light.lamp_studeerkamer    
             style:
               top: 85%
               left: 5%
@@ -137,24 +171,24 @@ views:
               left: 15%
               color: white      
           - type: state-icon 
-            entity: binary_sensor.tradfri_motion_sensor
-            style:
-              top: 85%
-              left: 70%
-              color: white               
-          - type: state-icon 
-            icon: mdi:home-thermometer
-            entity: sensor.studeerkamer_temperature  
-            style:
-              top: 85%
-              left: 80%
-              color: white              
-          - type: state-label
-            entity: sensor.studeerkamer_temperature
+            entity: binary_sensor.studeer_tradfri_bewegingssensor
             style:
               top: 85%
               left: 90%
-              color: white                
+              color: white               
+          # - type: state-icon 
+            # icon: mdi:home-thermometer
+            # entity: climate.thermostaat_studeerkamer
+            # style:
+              # top: 85%
+              # left: 80%
+              # color: white              
+          # - type: state-label
+            # entity: climate.thermostaat_studeerkamer
+            # style:
+              # top: 85%
+              # left: 90%
+              # color: white                    
 ###################################################
 #                                                 #
 #                GANG BENEDEN                     #
@@ -169,26 +203,26 @@ views:
               action: toggle
             hold_action:
               action: more-info
-            entity: light.gang_beneden      
+            entity: light.lamp_gang_beneden    
             style:
               top: 85%
               left: 5%
               color: white      
           - type: state-icon 
-            entity: binary_sensor.gang_motion_sensor
+            entity: binary_sensor.gang_beneden_sensor
             style:
               top: 85%
               left: 15%
               color: white               
           - type: state-icon 
             icon: mdi:home-thermometer
-            entity: sensor.gang_sensor_temperature
+            entity: sensor.gang_beneden_sensor
             style:
               top: 85%
               left: 25%
               color: white              
           - type: state-label
-            entity: sensor.gang_sensor_temperature
+            entity: sensor.gang_beneden_sensor
             style:
               top: 85%
               left: 35%
@@ -206,20 +240,20 @@ views:
               left: 60%
               color: white      
           - type: state-icon 
-            entity: binary_sensor.wc_beneden_motion_sensor
+            entity: binary_sensor.wc_beneden
             style:
               top: 85%
               left: 70%
               color: white               
           - type: state-icon 
             icon: mdi:home-thermometer
-            entity: sensor.wc_beneden_sensor_temperature
+            entity: sensor.wc_beneden
             style:
               top: 85%
               left: 80%
               color: white              
           - type: state-label
-            entity: sensor.wc_beneden_sensor_temperature
+            entity: sensor.wc_beneden
             style:
               top: 85%
               left: 90%
@@ -249,7 +283,7 @@ views:
               action: toggle
             hold_action:
               action: more-info
-            entity: light.slaapkamer_1 
+            entity: light.lamp_plafond_slaapkamer
             style:
               top: 85%
               left: 25%
@@ -260,7 +294,7 @@ views:
               action: toggle
             hold_action:
               action: more-info
-            entity: light.slaapkamer_2 
+            entity: light.lamp_nacht_jordi
             style:
               top: 85%
               left: 35%
@@ -271,7 +305,7 @@ views:
               action: toggle
             hold_action:
               action: more-info
-            entity: light.slaapkamer_2_2 
+            entity: light.lamp_nacht_iris
             style:
               top: 85%
               left: 45%
@@ -282,11 +316,11 @@ views:
               action: toggle
             hold_action:
               action: more-info
-            entity: light.slaapkamer_stroom
+            entity: switch.on_off_plug_in_unit_19
             style:
               top: 85%
               left: 95%
-              color: white                
+              color: white          
 ###################################################
 #                                                 #
 #                SLAAPKAMER                       #
@@ -301,26 +335,26 @@ views:
               action: toggle
             hold_action:
               action: more-info
-            entity: light.gang_boven    
+            entity: light.lamp_gang_boven    
             style:
               top: 85%
               left: 5%
               color: white      
           - type: state-icon 
-            entity: binary_sensor.motion_boven
+            entity: binary_sensor.gang_boven_sensor
             style:
               top: 85%
               left: 15%
               color: white               
           - type: state-icon 
             icon: mdi:home-thermometer
-            entity: sensor.boven_temperature
+            entity: sensor.gang_boven_sensor_2
             style:
               top: 85%
               left: 25%
               color: white              
           - type: state-label
-            entity: sensor.boven_temperature
+            entity: sensor.gang_boven_sensor_2
             style:
               top: 85%
               left: 35%
@@ -338,28 +372,35 @@ views:
               left: 60%
               color: white      
           - type: state-icon 
-            entity: binary_sensor.badkamer_sensor_motion
+            entity: binary_sensor.badkamer_sensor
             style:
               top: 85%
               left: 70%
               color: white               
           - type: state-icon 
             icon: mdi:home-thermometer
-            entity: sensor.badkamer_sensor_temperature
+            entity: sensor.badkamer_sensor
             style:
               top: 85%
               left: 80%
               color: white              
           - type: state-label
-            entity: sensor.badkamer_sensor_temperature
+            entity: sensor.badkamer_sensor
             style:
               top: 85%
               left: 90%
               color: white  
-      - type: entities
-        entities:
-        - light.garage_stroom
-        - input_boolean.slaapstart
+      - type: custom:jukebox-card
+        links:
+          - url: http://14923.live.streamtheworld.com:80/RADIO538AAC.aac
+            name: 538          
+          - url: https://icecast-qmusicnl-cdp.triple-it.nl/Qmusic_nl_live_96.mp3
+            name: Q Music          
+          - url: https://20403.live.streamtheworld.com/SRGSTR01.mp3?dist=sky-radio_web&ttag=talpa_consent:0
+            name: Skyradio                                         
+        entities:  
+          - media_player.slaapkamer_mini
+          - media_player.keuken_mini              
 
               
   - title: Afval
@@ -414,7 +455,9 @@ views:
               top: 91%
               left: 60%
               color: grey
-              font-size: 30px       
+              font-size: 30px   
+
+                   
 ### VACUUM
 
 
@@ -458,7 +501,16 @@ views:
         zones:
           - [[23280,23666,27980,26516,1],[25395,21121,32595,25871,1],[32450,20049,33350,22849,1],[30853,25824,33653,29274,1]]
           
-
+  - title: Data
+    cards:
+      - type: "custom:day-countdown"
+        date: "25 dec 2019"  
+        title: Kerst
+        icon_url: https://en.wikipedia.org/wiki/July_16      
+      - type: "custom:day-countdown"
+        date: "1 jan 2020"  
+        title: Iris verjaardag
+        icon_url: https://en.wikipedia.org/wiki/July_16        
 
               
         # entities:
