@@ -40,7 +40,15 @@ input_boolean:
     icon: mdi:bed
   check4:
     name: check4
-    initial: off    
+    initial: off  
+
+input_number:
+  temp_woonkamer:
+    name: Slider
+    initial: 25
+    min: 7
+    max: 30
+    step: 0.5  
     
 ###################################################
 #                                                 #
@@ -48,6 +56,7 @@ input_boolean:
 #                                                 #
 ###################################################
 default_config:
+system_health:
 
 lovelace:
   mode: yaml
@@ -134,11 +143,15 @@ sensor:
     trash_restafval_date:
       friendly_name: 'Grijze bak'
       value_template: '{{ as_timestamp(states.sensor.trash_restafval.state) | timestamp_custom("%Y-%m-%d") }}'
-    studeertemp:
-      friendly_name: 'StudeerTemp'     
-      value_template: "{{ state_attr('climate.thermostaat_studeerkamer', 'temperature') }}"  
-      unit_of_measurement: 'degrees'      
-
+    woonkamerthermtemp_set:
+      friendly_name: 'temperatuur thermostaat'
+      value_template: "{{ state_attr('climate.spzb0001', 'temperature') }}"  
+      unit_of_measurement: 'degrees'  
+    woonkamerthermtemp_current:
+      friendly_name: 'huidige temperatuur woonkamer'
+      value_template: "{{ state_attr('climate.spzb0001', 'current_temperature') }}"  
+      unit_of_measurement: 'degrees' 
+     
 - platform: ring
   
 vacuum:
