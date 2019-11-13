@@ -9,27 +9,24 @@
     - light.lamp_spetter
     - light.lamp_keuken
     #gangen
-    - light.gang_boven
-    - light.gang_beneden
-    #stroom
-    - light.jordi_stroom
-    - light.iris_stroom
+    - light.lamp_gang_boven
+    - light.lamp_gang_beneden
     #wc
     - light.lamp_wc
     #noell
-    - light.noell
+    - light.lamp_noell
     #remi
-    - light.remi
+    - light.lamp_remi
     #slaapkamer
-    - light.slaapkamer
-    - light.slaapkamer_1
-    - light.slaapkamer_2_2
+    - light.lamp_slaapkamer
+    - light.lamp_nacht_jordi
+    - light.lamp_nacht_iris
     #studeerkamer
-    - light.studeerkamer_2
+    - light.lamp_studeerkamer
     #badkamer
-    - light.badkamer_1
-    - light.badkamer_2
-    - light.badkamer_3
+    - light.lamp_badkamer_1
+    - light.lamp_badkamer_2
+    - light.lamp_badkamer_3
       
 - platform: group
   name: Woonkamergroep
@@ -44,6 +41,6 @@
 - platform: group
   name: Slaapkamergroep
   entities:
-    - light.slaapkamer
-    - light.slaapkamer_1
-    - light.slaapkamer_2_2
+    - light.lamp_plafond_slaapkamer
+    - light.lamp_nacht_jordi
+    - light.lamp_nacht_iris
