@@ -12,7 +12,9 @@ resources:
   - url: /community_plugin/jukebox.js
     type: module    
   - url: /community_plugin/birthday.js
-    type: js    
+    type: js   
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: module    
     
 
 title: Cool en brander
@@ -136,7 +138,26 @@ views:
         shortcuts: buttons
       - type: sensor
         entity: sensor.woonkamer_tv
-        name: Activiteit Harmony        
+        name: Activiteit Harmony  
+        
+      - type: entities
+        entities:
+          - type: custom:slider-entity-row
+            entity: climate.spzb0001
+            min: 7
+            max: 30
+            step: 0.5
+      
+      - type: gauge
+        entity: sensor.woonkamerthermtemp_current
+        name: Thermostaat
+        unit: '*'
+        min: 10
+        max: 30
+        severity:
+          green: 20
+          yellow: 27
+          red: 30
 
 
   - title: Themostaat
