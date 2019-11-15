@@ -69,6 +69,12 @@ views:
           - person.jordi_de_geus
           - person.iris_braun
           - zone.home
+          
+      - type: entities
+        entities:
+          - entity: input_boolean.check4
+            name: gasten
+            icon: mdi:account-circle-outline
         
   - title: Woonkamer
     cards:
@@ -78,7 +84,17 @@ views:
 #                                                 #
 ###################################################
 
-        
+
+      - type: picture-glance
+        title: woonkamer
+        entities:
+          - light.woonkamergroep 
+          - switch.sonoff_10009d2097
+          - binary_sensor.woonkamer_sensor
+          - entity: sensor.woonkamer_sensor
+            show_state: true
+            show_icon: false
+        image: /local/woonkamer.jpg
       - type: picture-elements
         image: /local/woonkamer.jpg
         elements:
@@ -126,9 +142,12 @@ views:
               
       - type: entities
         entities:
-          - entity: scene.woonkamer_warm
-          - entity: scene.woonkamer_helder
-          - entity: scene.woonkamer_heel_warm
+          - entity: scene.woonkamer1
+            name: Orange
+          - entity: scene.woonkamer2
+            name: Helder
+          - entity: scene.woonkamer3
+            name: Red
 
       - entity: media_player.woonkamer
         type: custom:mini-media-player
@@ -149,7 +168,7 @@ views:
             step: 0.5
       
       - type: gauge
-        entity: sensor.woonkamerthermtemp_current
+        entity: sensor.woonkamerthemtemp_current
         name: Thermostaat
         unit: '*'
         min: 10
@@ -158,12 +177,42 @@ views:
           green: 20
           yellow: 27
           red: 30
+          
+         
 
 
   - title: Themostaat
     cards:
       - type: thermostat
         entity: climate.spzb0001     
+      - type: thermostat
+        entity: climate.thermostat_55
+      - type: thermostat
+        entity: climate.thermostat_56 
+      - type: thermostat
+        entity: climate.thermostat_52        
+      - type: entities
+        entities:
+          - type: custom:slider-entity-row
+            entity: climate.spzb0001  
+            min: 7
+            max: 30
+            step: 0.5        
+          - type: custom:slider-entity-row
+            entity: climate.thermostat_55 
+            min: 7
+            max: 30
+            step: 0.5  
+          - type: custom:slider-entity-row
+            entity: climate.thermostat_56  
+            min: 7
+            max: 30
+            step: 0.5  
+          - type: custom:slider-entity-row
+            entity: climate.thermostat_52  
+            min: 7
+            max: 30
+            step: 0.5              
 ###################################################
 #                                                 #
 #                STUDEERKAMER                     #
@@ -407,6 +456,15 @@ views:
               top: 85%
               left: 90%
               color: white  
+              
+      - type: picture-glance
+        title: Zolder
+        entities: 
+          - light.lamp_zolder   
+          - binary_sensor.zolder_sensor
+          - climate.spzb0001
+        image: /local/zolder.png 
+              
       - type: custom:jukebox-card
         links:
           - url: http://14923.live.streamtheworld.com:80/RADIO538AAC.aac
