@@ -1,10 +1,32 @@
-## 
-# PURGE
-# BACKUP
-# SECRETS
-# HOME ASSIST
-# Huis verlaten!!<<<<<<<<<<<<<<<
+###################################################
+#                                                 #
+#                 DEFAULT CONFIG                  #
+#                                                 #
+###################################################
+default_config:
+system_health:
+lovelace:
+  mode: yaml
 
+
+############
+#   SSL    #
+############
+
+http:
+  base_url: !secret baseurl 
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  
+google_assistant:
+  project_id: !secret homeid 
+  api_key: !secret apigoogle 
+  exposed_domains:
+    - switch
+    - light
+    - group
+    - script
+    - climate 
 
 ############
 # RECORDER #
@@ -18,49 +40,10 @@ recorder:
       - sensor
       - person
       
-############
-# NOTIFY   #
-############
-
-notify:
-  - name: NOTIFIER_NAME
-    platform: telegram
-    chat_id: !secret chatid    
-
-telegram_bot:
-  - platform: polling
-    api_key: !secret api 
-    allowed_chat_ids:
-      - !secret chatid
-
-input_boolean:
-  slaapstart:
-    name: Slaap aanzetten
-    initial: off
-    icon: mdi:bed
-  check4:
-    name: check4
-    initial: off  
-
-input_number:
-  temp_woonkamer:
-    name: Slider
-    initial: 25
-    min: 7
-    max: 30
-    step: 0.5  
-    
-###################################################
-#                                                 #
-#                 DEFAULT CONFIG                  #
-#                                                 #
-###################################################
-default_config:
-system_health:
-
-lovelace:
-  mode: yaml
-
+# Text to speech
+tts:
+  - platform: google_translate      
+      
 ###################################################
 #                                                 #
 #                 BREAK UP CONFIG                 #
@@ -71,11 +54,11 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 light: !include light.yaml
-
-# Text to speech
-tts:
-  - platform: google_translate
-
+input_boolean: !include input_boolean.yaml
+input_number: !include input_number.yaml
+sensor: !include sensor.yaml
+scene: !include scenes.yaml
+    
 
 ###################################################
 #                                                 #
@@ -84,7 +67,6 @@ tts:
 ###################################################
 
 ##       RING DEURBEL
-
 
 ring:
   username: !secret email
@@ -100,7 +82,7 @@ ffmpeg:
 camera: 
   - platform: ring  
   
-##       SONOF INSTELLEN
+##       SONOF 
 
 sonoff:
   username: !secret email 
@@ -113,53 +95,20 @@ sonoff:
 
 ## HARMONY
 
-
 remote:
   - platform: harmony
     name: tvwoonkamer
     host: 192.168.178.24
 
+##  VACUUM
 
-##  SENSORS
-
-sensor:
-
-- platform: systemmonitor
-  resources:
-    - type: disk_use_percent
-      arg: /home
-    - type: memory_free
-  
-- platform: afvalwijzer
-  postcode: !secret postcode
-  huisnummer: !secret huisnummer
-  
-
-- platform: template
-  sensors:
-    woonkamer_tv:
-      friendly_name: 'woonkamer'     
-      value_template: "{{ state_attr('remote.tvwoonkamer', 'current_activity') }}"
-    trash_restafval_date:
-      friendly_name: 'Grijze bak'
-      value_template: '{{ as_timestamp(states.sensor.trash_restafval.state) | timestamp_custom("%Y-%m-%d") }}'
-    woonkamerthermtemp_set:
-      friendly_name: 'temperatuur thermostaat'
-      value_template: "{{ state_attr('climate.spzb0001', 'temperature') }}"  
-      unit_of_measurement: 'degrees'  
-    woonkamerthermtemp_current:
-      friendly_name: 'huidige temperatuur woonkamer'
-      value_template: "{{ state_attr('climate.spzb0001', 'current_temperature') }}"  
-      unit_of_measurement: 'degrees' 
-     
-- platform: ring
-  
 vacuum:
   - platform: xiaomi_miio
     host: 192.168.178.60
     token: !secret token
     name: frits
 
+    
 
 
 
