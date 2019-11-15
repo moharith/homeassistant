@@ -1,0 +1,7 @@
+temp_woonkamer:
+  name: Slider
+  initial: 25
+  min: 7
+  max: 30
+  step: 0.5  
+      

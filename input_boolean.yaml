@@ -1,0 +1,7 @@
+slaapstart:
+  name: Slaap aanzetten
+  initial: off
+  icon: mdi:bed
+check4:
+  name: check4
+  initial: off  
