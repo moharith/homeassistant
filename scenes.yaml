@@ -1,0 +1,18 @@
+- name: Woonkamer1
+  entities: 
+    light.woonkamergroep:
+      state: on
+      rgb_color: [255, 164, 73]
+      brightness: 255
+- name: Woonkamer2
+  entities: 
+    light.woonkamergroep:
+      state: on
+      rgb_color: [255, 255, 255]
+      brightness: 255
+- name: Woonkamer3
+  entities: 
+    light.woonkamergroep:
+      state: on
+      rgb_color: [255, 22, 22]
+      brightness: 255
