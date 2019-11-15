@@ -2,12 +2,12 @@
   name: alle lampen
   entities:
     #woonkamer
-    - light.lamp_bloom
-    - light.lamp_bank
-    - light.lamp_go
-    - light.lamp_eettafel
-    - light.lamp_spetter
-    - light.lamp_keuken
+    - light.bloom
+    - light.bank
+    - light.go
+    - light.eettafel
+    - light.spetter
+    - light.keuken
     #gangen
     - light.lamp_gang_boven
     - light.lamp_gang_beneden
@@ -31,12 +31,12 @@
 - platform: group
   name: Woonkamergroep
   entities:
-    - light.lamp_bloom
-    - light.lamp_bank
-    - light.lamp_go
-    - light.lamp_eettafel
-    - light.lamp_spetter
-    - light.lamp_keuken
+    - light.bloom
+    - light.bank
+    - light.go
+    - light.eettafel
+    - light.spetter
+    - light.keuken
     
 - platform: group
   name: Slaapkamergroep
