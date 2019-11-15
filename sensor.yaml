@@ -1,0 +1,38 @@
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+  
+- platform: afvalwijzer
+  postcode: !secret postcode
+  huisnummer: !secret huisnummer
+  
+
+- platform: template
+  sensors:
+    woonkamer_tv:
+      friendly_name: 'woonkamer'     
+      value_template: "{{ state_attr('remote.tvwoonkamer', 'current_activity') }}"
+    trash_restafval_date:
+      friendly_name: 'Grijze bak'
+      value_template: '{{ as_timestamp(states.sensor.trash_restafval.state) | timestamp_custom("%Y-%m-%d") }}'
+    woonkamerthemtemp_current:
+      friendly_name: 'huidige temperatuur woonkamer'
+      value_template: "{{ state_attr('climate.spzb0001', 'current_temperature') }}"  
+      unit_of_measurement: 'degrees'       
+    zolderthermtemp_current:
+      friendly_name: 'huidige temperatuur zolder'
+      value_template: "{{ state_attr('climate.thermostat_52', 'current_temperature') }}"  
+      unit_of_measurement: 'degrees' 
+    studeerthermtemp_current:
+      friendly_name: 'huidige temperatuur studeer'
+      value_template: "{{ state_attr('climate.thermostat_55', 'current_temperature') }}"  
+      unit_of_measurement: 'degrees'
+    halthermtemp_current:
+      friendly_name: 'huidige temperatuur hal'
+      value_template: "{{ state_attr('climate.thermostat_56', 'current_temperature') }}"  
+      unit_of_measurement: 'degrees'
+      
+- platform: ring
+  
